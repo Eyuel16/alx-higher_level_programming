@@ -376,7 +376,7 @@ class TestRectangle(unittest.TestCase):
         """Checks use of load_from_file with no file"""
         try:
             os.remove("Rectangle.json")
-        except Exception:
+        except FileNotFoundError:
             pass
         self.assertEqual(Rectangle.load_from_file(), [])
 
@@ -384,7 +384,7 @@ class TestRectangle(unittest.TestCase):
         """Checks use of load_from_file with empty file"""
         try:
             os.remove("Rectangle.json")
-        except Exception:
+        except FileNotFoundError:
             pass
         open("Rectangle.json", 'a').close()
         self.assertEqual(Rectangle.load_from_file(), [])
