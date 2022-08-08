@@ -307,7 +307,7 @@ class TestSquare(unittest.TestCase):
         """test regular use of save_to_file"""
         s1 = Square(1, 1, 1, 1)
         s2 = Square(2, 2, 2, 2)
-        l = [s1, s2]
+        h = [s1, s2]
         Square.save_to_file(l)
         with open("Square.json", "r") as f:
             ls = [s1.to_dictionary(), s2.to_dictionary()]
@@ -315,7 +315,7 @@ class TestSquare(unittest.TestCase):
 
     def test_stf_empty(self):
         """test save_to_file with empty list"""
-        l = []
+        h = []
         Square.save_to_file(l)
         with open("Square.json", "r") as f:
             self.assertEqual("[]", f.read())
@@ -343,7 +343,7 @@ class TestSquare(unittest.TestCase):
         """Checks use of load_from_file with no file"""
         try:
             os.remove("Square.json")
-        except:
+        except FileNotFoundError:
             pass
         self.assertEqual(Square.load_from_file(), [])
 
@@ -351,7 +351,7 @@ class TestSquare(unittest.TestCase):
         """Checks use of load_from_file with empty file"""
         try:
             os.remove("Square.json")
-        except:
+        except FileNotFoundError:
             pass
         open("Square.json", 'a').close()
         self.assertEqual(Square.load_from_file(), [])
