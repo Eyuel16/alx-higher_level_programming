@@ -341,7 +341,7 @@ class TestRectangle(unittest.TestCase):
         r1 = Rectangle(1, 1, 1, 1, 1)
         r2 = Rectangle(2, 2, 2, 2, 2)
         h = [r1, r2]
-        Rectangle.save_to_file(l)
+        Rectangle.save_to_file(h)
         with open("Rectangle.json", "r") as f:
             ls = [r1.to_dictionary(), r2.to_dictionary()]
             self.assertEqual(json.dumps(ls), f.read())
