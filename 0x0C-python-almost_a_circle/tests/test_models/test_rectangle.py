@@ -349,7 +349,7 @@ class TestRectangle(unittest.TestCase):
     def test_stf_empty(self):
         """test save_to_file with empty list"""
         h = []
-        Rectangle.save_to_file(l)
+        Rectangle.save_to_file(h)
         with open("Rectangle.json", "r") as f:
             self.assertEqual("[]", f.read())
 
@@ -376,7 +376,7 @@ class TestRectangle(unittest.TestCase):
         """Checks use of load_from_file with no file"""
         try:
             os.remove("Rectangle.json")
-        except FileNotFoundError:
+        except Exception:
             pass
         self.assertEqual(Rectangle.load_from_file(), [])
 
@@ -384,7 +384,7 @@ class TestRectangle(unittest.TestCase):
         """Checks use of load_from_file with empty file"""
         try:
             os.remove("Rectangle.json")
-        except FileNotFoundError:
+        except Exception:
             pass
         open("Rectangle.json", 'a').close()
         self.assertEqual(Rectangle.load_from_file(), [])
